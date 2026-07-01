@@ -62,10 +62,55 @@ first.
 
 Live URL: **https://maisilva21.github.io/ms-corp-studio/**
 
+## Client intake tracker
+
+`/intake` (**https://maisilva21.github.io/ms-corp-studio/intake/**) lists every
+client request and its stage (`new` → `scoped` → `in_progress` →
+`delivered`), grouped by stage, so the CEO and future Studio PM/Growth hires
+can check status without asking the engineer.
+
+Data lives in `data/intake.json`, a plain array of requests:
+
+```json
+{
+  "requests": [
+    {
+      "id": "unique-string",
+      "clientName": "Jane Doe",
+      "contactEmail": "jane@example.com",
+      "company": "Acme Co",
+      "summary": "What they're asking for",
+      "source": "lead_form",
+      "stage": "new",
+      "createdAt": "2026-07-01T10:00:00Z",
+      "updatedAt": "2026-07-01T10:00:00Z",
+      "notes": "Optional freeform notes"
+    }
+  ]
+}
+```
+
+`source` is `"lead_form"` (from the MSC-3 marketing site form) or
+`"manual"`. `company` and `notes` are optional. To log or update a request,
+edit `data/intake.json` and push to `main` — the site rebuilds and
+redeploys automatically.
+
+**Known gap:** this is a v1, view-only, git-backed store — there's no web
+form or auth in front of it yet, so only the engineer can add/update
+entries (by editing the JSON and pushing), and the page is publicly
+reachable (unstyled, plain data) rather than access-controlled. The
+MSC-3 lead-capture form does not yet write into this file automatically;
+wiring that up, or giving non-technical hires a way to edit stages
+directly, needs a real backend (see the GitHub Pages limitation above) and
+is a cost/hosting decision to flag to the CEO rather than something to
+default into.
+
 ## Repo layout
 
 ```
-app/            Next.js App Router pages (app/page.tsx is the homepage)
+app/            Next.js App Router pages (app/page.tsx is the homepage, app/intake is the intake tracker)
+data/           Checked-in data files (data/intake.json backs the intake tracker)
+lib/            Shared TypeScript types/helpers
 .github/workflows/   CI and deploy pipelines
 next.config.js  Static export config, GitHub Pages base path handling
 ```
