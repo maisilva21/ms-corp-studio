@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
+import './globals.css';
 
 export const metadata: Metadata = {
   title: 'MS Corp Studio',
-  description: 'Graphic design studio — site under construction.',
+  description: 'A graphic design studio for identity, packaging, and digital design work.',
 };
 
 export default function RootLayout({

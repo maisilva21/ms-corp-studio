@@ -1,0 +1,171 @@
+/* Functional, unbranded baseline styles.
+   No color/typography identity decisions here — that's a Creative Director
+   call. This just keeps the site readable and usable. */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  color: #1a1a1a;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+section {
+  padding: 3rem 0;
+}
+
+section + section {
+  border-top: 1px solid #e5e5e5;
+}
+
+.hero {
+  padding: 4rem 0 3rem;
+}
+
+.hero h1 {
+  font-size: 2.25rem;
+  margin: 0 0 0.75rem;
+}
+
+.hero p {
+  font-size: 1.125rem;
+  max-width: 40rem;
+  color: #444;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin: 0 0 1.5rem;
+}
+
+.placeholder-note {
+  display: inline-block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #666;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.15rem 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.portfolio-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 1.25rem;
+}
+
+.portfolio-card .thumb {
+  background: #f2f2f2;
+  border: 1px dashed #ccc;
+  border-radius: 4px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.portfolio-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+}
+
+.portfolio-card p {
+  margin: 0;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+form {
+  max-width: 32rem;
+}
+
+.field {
+  margin-bottom: 1rem;
+}
+
+.field label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 0.55rem 0.65rem;
+  font: inherit;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.field textarea {
+  min-height: 6rem;
+  resize: vertical;
+}
+
+.honeypot-field {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+}
+
+button[type='submit'] {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.65rem 1.25rem;
+  border: 1px solid #1a1a1a;
+  background: #1a1a1a;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type='submit']:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-status {
+  margin-top: 0.85rem;
+  font-size: 0.9rem;
+}
+
+.form-status.success {
+  color: #16794f;
+}
+
+.form-status.error {
+  color: #b3261e;
+}
+
+footer {
+  padding: 2rem 0;
+  color: #777;
+  font-size: 0.85rem;
+}

@@ -62,6 +62,36 @@ first.
 
 Live URL: **https://maisilva21.github.io/ms-corp-studio/**
 
+## Marketing site + lead capture
+
+The homepage (`app/page.tsx`) is the client-facing marketing site: studio
+positioning, a placeholder portfolio/case-study section (real work goes in
+once the Creative Director hire fills it in), and a lead-capture form
+(`app/components/ContactForm.tsx`).
+
+The site is static (GitHub Pages, no server), so the form can't run backend
+code. It POSTs directly to [FormSubmit](https://formsubmit.co) — a
+no-signup, no-token email relay — which forwards submissions to
+`maisilva@gmail.com`. This was chosen over a hosted form backend
+(Formspree, etc.) specifically because it requires no new account and no
+secret to keep in the repo, consistent with this repo's zero-secret
+GitHub Pages setup.
+
+**One-time activation:** FormSubmit requires the recipient to click an
+"Activate Form" link on first use before it will forward submissions —
+this was triggered during verification and needs a human to click it in
+`maisilva@gmail.com` before leads actually arrive. Until that's clicked,
+submissions are accepted but not delivered.
+
+**v1 workflow, current state:** lead form → email to `maisilva@gmail.com`
+→ engineer manually adds a `source: "lead_form"` entry to
+`data/intake.json` (same manual git-push workflow as the intake tracker
+below). This is not automatic; wiring the form to write into
+`data/intake.json` directly needs the same real backend (Vercel + DB or
+similar) already flagged below for the intake tracker — worth
+prioritizing since two features now want it, but it's a cost/hosting
+decision for the CEO, not a default to make unilaterally.
+
 ## Client intake tracker
 
 `/intake` (**https://maisilva21.github.io/ms-corp-studio/intake/**) lists every
@@ -109,6 +139,7 @@ default into.
 
 ```
 app/            Next.js App Router pages (app/page.tsx is the homepage, app/intake is the intake tracker)
+app/components/ Shared React components (e.g. the lead-capture ContactForm)
 data/           Checked-in data files (data/intake.json backs the intake tracker)
 lib/            Shared TypeScript types/helpers
 .github/workflows/   CI and deploy pipelines
@@ -117,9 +148,15 @@ next.config.js  Static export config, GitHub Pages base path handling
 
 ## Known gaps
 
-- The homepage is an intentionally unstyled placeholder ("under
-  construction"). Visual/brand design is out of scope for engineering and
-  needs a design owner — flagged, not silently shipped as final.
+- The homepage now has real content (positioning, portfolio, lead form) and
+  minimal functional CSS, but no brand/visual identity — colors, type,
+  imagery are all placeholder-neutral. That's a Creative Director call, not
+  engineering's; flagged for design review rather than guessed at.
+- Portfolio/case-study content is placeholder text and image boxes pending
+  real work from the Creative Director hire.
+- Lead-capture form activation is pending a human clicking the FormSubmit
+  "Activate Form" link sent to `maisilva@gmail.com` (see "Marketing site +
+  lead capture" above) — without it, submissions aren't delivered yet.
 - No tests yet; there's no application logic to test. Add a test runner
   (Vitest is the standard pairing with Next.js) when real features land.
 
