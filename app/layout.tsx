@@ -1,9 +1,26 @@
 import type { Metadata } from 'next';
+import { Fraunces, Inter } from 'next/font/google';
 import './globals.css';
 
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '900'],
+  style: ['normal', 'italic'],
+  variable: '--font-serif',
+  display: 'swap',
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-sans',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
-  title: 'MS Corp Studio',
-  description: 'A graphic design studio for identity, packaging, and digital design work.',
+  title: 'MS Corp Studio — Brand, Packaging & Digital Design',
+  description:
+    'MS Corp is a graphic design studio building brand identity, packaging, and digital design for ambitious brands. Start a project.',
 };
 
 export default function RootLayout({
@@ -12,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
       <body>{children}</body>
     </html>
   );
